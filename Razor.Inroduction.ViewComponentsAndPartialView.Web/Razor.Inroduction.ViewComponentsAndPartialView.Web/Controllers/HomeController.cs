@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
 {
@@ -8,14 +10,16 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DatabaseContext _databaseContext;
+        public HomeController(ILogger<HomeController> logger,DatabaseContext databaseContext)
         {
             _logger = logger;
+            _databaseContext = databaseContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_databaseContext.MenuItems.ToList());
         }
 
         public IActionResult Privacy()

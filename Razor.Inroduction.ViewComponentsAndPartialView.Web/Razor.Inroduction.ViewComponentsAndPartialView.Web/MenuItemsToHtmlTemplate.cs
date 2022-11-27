@@ -8,15 +8,15 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
 {
     public class MenuItemsToHtmlTemplate
     {
-        public static List<MenuItems> MenuItems { private get; set; }
+        public static List<MenuItem> MenuItems { private get; set; }
         public static string GetContent()
         {
             var parents = MenuItems.Where(mi => mi.ParentId == Guid.Empty).ToList();
 
             StringBuilder sb = new();
-           
+
             sb.Append(@"<ul class=""navbar-nav"">");
-            
+
             foreach (var item in parents)
             {
                 sb.Append(@$"
@@ -26,11 +26,13 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
                     </a>"
                 );
 
-                if (MenuItems.Any(mi => mi.ParentId == item.ParentId))
+                var childs = MenuItems.Where(mi => mi.ParentId == item.ParentId).ToList();
+                
+                if (childs != null)
                 {
                     sb.Append(@$"<ul class=""dropdown-menu"">");
 
-                    var childContent = SetChildItems(item.Id, string.Empty);
+                    var childContent = SetChildItems(childs);
 
                     sb.Append(childContent);
 
@@ -41,15 +43,15 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
             }
 
             sb.Append("</ul>");
-           
+
             return sb.ToString();
 
         }
 
-        private static string SetChildItems(Guid menuItemId, string content)
+        private static string SetChildItems(List<MenuItem> childs)
         {
-            var childs = MenuItems.Where(mi => mi.ParentId == menuItemId).ToList();
-
+            var content = string.Empty;
+            
             foreach (var child in childs)
             {
                 content += $@"<li><a class=""dropdown-item"" href=""#""> {child.Name} </a>";
@@ -58,15 +60,12 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
                 {
                     content += $@" <ul class=""submenu dropdown-menu"">";
 
-                    SetChildItems(child.Id, content);
+                    content += SetChildItems(MenuItems.Where(mi=>mi.ParentId == child.Id).ToList());
 
                     content += "</ul>";
                 }
-                else
-                {
-                    content += "</li>";
-                }
 
+                content += "</li>";
             }
             return content;
         }

@@ -6,7 +6,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
 {
     public class MenuTagHelper : TagHelper
     {
-        public List<MenuItems> MenuItems { get; set; }
+        public List<MenuItem> MenuItems { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {

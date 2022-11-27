@@ -1,1 +1,1 @@
-# View-Component
+# View-Component and Partial-View

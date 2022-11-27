@@ -7,6 +7,6 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
         }
-        public DbSet<Menu> MenuItems { get; set; }
+        public DbSet<MenuItems> MenuItems { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 {
-    public class Menu
+    public class MenuItems
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }

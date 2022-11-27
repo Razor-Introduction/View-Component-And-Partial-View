@@ -5,14 +5,14 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 {
     public class DummyMenuItems
     {
-        public List<Menu> MenuItems { get; set; }
+        public List<MenuItems> MenuItems { get; set; }
         public DummyMenuItems()
         {
             MenuItems = new();
 
             for (int i = 1; i <= 10; i++)
             {
-                var parent = new Menu
+                var parent = new MenuItems
                 {
                     Id = Guid.NewGuid(),
                     Name = $"Category {i}",
@@ -23,7 +23,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 
                 for (int j = 1; j <= 5; j++)
                 {
-                    var child = new Menu
+                    var child = new MenuItems
                     {
                         Id = Guid.NewGuid(),
                         Name = $"Category {i}-{j}",
@@ -34,7 +34,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 
                     for (int y = 1; y <= 5; y++)
                     {
-                        var grandChild = new Menu
+                        var grandChild = new MenuItems
                         {
                             Id = Guid.NewGuid(),
                             Name = $"Category {i}-{j}-{y}",

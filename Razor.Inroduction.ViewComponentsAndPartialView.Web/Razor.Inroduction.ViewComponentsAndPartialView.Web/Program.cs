@@ -1,9 +1,22 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<DatabaseContext>(options =>
+{
+    options.UseInMemoryDatabase("MenuItemsInMemoryDatabase");
+});
+
 var app = builder.Build();
+
+SetDummyData(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -25,3 +38,17 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+static void SetDummyData(WebApplication app)
+{
+    var scope = app.Services.CreateScope();
+   
+    var db = scope.ServiceProvider.GetService<DatabaseContext>();
+
+    DummyMenuItems dummyData = new();
+
+    db.MenuItems.AddRange(dummyData.MenuItems);
+    
+    db.SaveChanges();
+}

@@ -49,6 +49,7 @@ static void SetDummyData(WebApplication app)
     DummyMenuItems dummyData = new();
 
     db.MenuItems.AddRange(dummyData.MenuItems);
+
     
     db.SaveChanges();
 }

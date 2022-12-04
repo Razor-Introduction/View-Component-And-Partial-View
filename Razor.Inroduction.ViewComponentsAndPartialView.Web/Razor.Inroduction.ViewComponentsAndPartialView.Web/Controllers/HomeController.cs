@@ -19,7 +19,37 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
 
         public IActionResult Index()
         {
-            return View(_databaseContext.MenuItems.ToList());
+            return View();
+        }
+
+        public IActionResult Man()
+        {
+            var model = new MenuViewModel
+            {
+                MenuItems = _databaseContext.MenuItems.Where(mi => mi.Type == "Man").ToList(),
+                Color = "bg-primary"
+            };
+            return View(model);
+        }
+
+        public IActionResult Woman()
+        {
+            var model = new MenuViewModel
+            {
+                MenuItems = _databaseContext.MenuItems.Where(mi => mi.Type == "Woman").ToList(),
+                Color = "bg-danger"
+            };
+            return View(model);
+        }
+
+        public IActionResult Child()
+        {
+            var model = new MenuViewModel
+            {
+                MenuItems = _databaseContext.MenuItems.Where(mi => mi.Type == "Child").ToList(),
+                Color = "bg-success"
+            };
+            return View(model);
         }
 
         public IActionResult Privacy()

@@ -8,3 +8,5 @@
 
 @await Html.PartialAsync("_MenuPartialView", Model)
 
+@await Component.InvokeAsync("Menu", new{type = "Man", color = "bg-primary"})
+

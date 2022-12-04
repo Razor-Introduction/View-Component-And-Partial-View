@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
+namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.TagHelpers
 {
     public class MenuTagHelper : TagHelper
     {

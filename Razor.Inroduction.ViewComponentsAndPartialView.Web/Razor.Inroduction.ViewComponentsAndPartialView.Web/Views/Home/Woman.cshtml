@@ -7,3 +7,4 @@
 <h1>Woman</h1>
 
 @await Html.PartialAsync("_MenuPartialView", Model)
+@await Component.InvokeAsync("Menu", new{type = "Woman", color = "bg-danger"})

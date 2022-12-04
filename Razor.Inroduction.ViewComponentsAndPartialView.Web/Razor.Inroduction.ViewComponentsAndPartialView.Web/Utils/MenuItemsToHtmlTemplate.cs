@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 
-namespace Razor.Inroduction.ViewComponentsAndPartialView.Web
+namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils
 {
     public class MenuItemsToHtmlTemplate
     {

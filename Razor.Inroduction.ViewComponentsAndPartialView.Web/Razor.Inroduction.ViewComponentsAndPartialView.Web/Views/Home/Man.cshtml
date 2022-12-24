@@ -6,11 +6,6 @@
 
 <h1>Man</h1>
 
-@await Html.PartialAsync("_MenuPartialView", Model)
-
-@await Component.InvokeAsync("Menu", new{type = "Man", color = "bg-primary"})
-
-
 <partial name="_MenuPartialView" model="Model">
 
 <vc:menu type="Man" color="bg-primary"></vc:menu>

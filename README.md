@@ -48,6 +48,14 @@ ViewComponent ihtiyacı olan dataları Controller üzerinden değil, direkt kend
 
 ![component](https://user-images.githubusercontent.com/73026903/209478235-8a25dcb8-a110-4911-98d3-40e5f0bc161f.png)
 
+
+## En Önemli Farklar
+
+Partial view'lar, controller katmanına bağımlıdır ama View Component'ların kendi .cs dosyaları vardır.
+
+View Component'ların kendi .cs dosyaları olduğu için test edilebilirlik açısından çok daha avantajlıdır.
+
+
 ## Via
 https://emrecanayar.wordpress.com/2021/03/12/partialview-nedir/
 

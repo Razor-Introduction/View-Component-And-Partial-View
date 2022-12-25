@@ -4,6 +4,8 @@
 
 ASP.NET MVC 1.0
 
+## Tanım
+
 PartialView, başka bir View içeresinde oluşturulan bir view yani görünümdür. PartialView ile oluşturulan HMTL çıktısı, onu çağıran üst görünüme dönüştürülür.
 
 ## Avantajları
@@ -24,6 +26,8 @@ Eğer kullanacağız View yapısı oldukça karmaşık kod düzeni içeriyorsa b
 ## Released
 
 ASP.NET Core 1.0
+
+## Tanım
 
 ViewComponent modüler tasarım yapılanmasını oluşturulmasını ve kullanılmasını sağlayan bir yapıdır. .Net Core mimarisi ile hayatımıza giriş yapmıştır. 
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.DatabaseContext;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,16 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync(string menuType, string color)
         {
-            var menuModel = _databaseContext.MenuCategories.Include(mc => mc.MenuItems)
+            var menuModel = await _databaseContext.MenuCategories.Include(mc => mc.MenuItems)
                         .ThenInclude(mi => mi.MenuSubItems).Where(x => x.Type == menuType).ToListAsync();
-            
-            return View(menuModel);
+
+            MenuViewModel menuViewModel = new()
+            {
+                Color = color,
+                Menu = menuModel.First() ?? new Menu()
+            };
+
+            return View(menuViewModel);
         }
     }
 }

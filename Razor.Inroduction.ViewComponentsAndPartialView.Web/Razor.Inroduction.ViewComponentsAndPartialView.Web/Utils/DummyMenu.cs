@@ -27,24 +27,24 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils
             Menu menuCategory = new() { Id = Guid.NewGuid(), Type = type };
             MenuCategories.Add(menuCategory);
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 9; i++)
             {
                 var parent = new MenuItem
                 {
                     Id = Guid.NewGuid(),
-                    Name = $"Category {i}",
+                    Name = $"{type[..1].ToLower()}.Category {i}",
                     MenuCategoryId = menuCategory.Id,
 
                 };
 
                 MenuItems.Add(parent);
 
-                for (int j = 1; j <= 3; j++)
+                for (int j = 1; j <= 10; j++)
                 {
                     var child = new MenuSubItem
                     {
                         Id = Guid.NewGuid(),
-                        Name = $"Category {i}-{j}",
+                        Name = $"{type[..1].ToLower()}.Category {i}-{j}",
                         Href = $"Product/Category{i}-{j}.cshtml",
                         MenuItemId = parent.Id
                     };

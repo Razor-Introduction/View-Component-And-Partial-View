@@ -1,4 +1,6 @@
-﻿
+﻿@using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
+@model MenuViewModel
+
 <style type="text/css">
 
     /* ============ desktop view ============ */
@@ -42,7 +44,6 @@
     /* ============ small devices .end// ============ */
 
 </style>
-
 <script type="text/javascript">
     //	window.addEventListener("resize", function() {
     //		"use strict"; window.location.reload();
@@ -96,8 +97,37 @@
         // end if innerWidth
 
     });
-                    // DOMContentLoaded  end
+                                                    // DOMContentLoaded  end
 </script>
 
-<div class="container">
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark @Model.Color">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">@Model.Menu.Type</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                @foreach (var menuItem in Model.Menu.MenuItems)
+                {
+                    <li class="nav-item dropdown">
+                        <a class=" nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            @menuItem.Name
+                        </a>
+                        @if (menuItem.MenuSubItems is not null)
+                        {
+                            <ul class="dropdown-menu">
+                                @foreach (var menuSubItem in menuItem.MenuSubItems)
+                                {
+                                    <li>
+                                        <a class="dropdown-item" href="@menuSubItem.Href">@menuSubItem.Name </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

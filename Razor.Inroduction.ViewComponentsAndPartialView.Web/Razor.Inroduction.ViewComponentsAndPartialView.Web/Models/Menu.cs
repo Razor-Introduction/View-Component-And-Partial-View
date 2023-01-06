@@ -4,13 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 {
-    public class MenuItem
+    public class Menu
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid MenuCategoryId { get; set; }
-        public Menu MenuCategory { get; set; }
-        public virtual List<MenuSubItem> MenuSubItems { get; set; }
+        public string Type { get; set; }
+        public virtual List<MenuItem> MenuItems { get; set; }
     }
 }

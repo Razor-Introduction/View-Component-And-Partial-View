@@ -1,4 +1,4 @@
-namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
+namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
 {
     public class ErrorViewModel
     {

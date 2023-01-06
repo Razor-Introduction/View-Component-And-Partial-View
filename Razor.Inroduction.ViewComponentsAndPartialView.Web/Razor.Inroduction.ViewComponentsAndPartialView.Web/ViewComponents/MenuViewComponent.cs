@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
+using Microsoft.EntityFrameworkCore;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.DatabaseContext;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,15 +13,12 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.ViewComponents
         {
             _databaseContext = databaseContext;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string type,string color)
+        public async Task<IViewComponentResult> InvokeAsync(string menuType, string color)
         {
-            MenuViewModel viewModel = new()
-            {
-                MenuItems = _databaseContext.MenuItems.Where(mi => mi.Type == type).ToList(),
-                Color = color
-            };
-
-            return View(viewModel);
+            var menuModel = _databaseContext.MenuCategories.Include(mc => mc.MenuItems)
+                        .ThenInclude(mi => mi.MenuSubItems).Where(x => x.Type == menuType).ToListAsync();
+            
+            return View(menuModel);
         }
     }
 }

@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.DatabaseContext;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,10 +47,11 @@ static void SetDummyData(WebApplication app)
    
     var db = scope.ServiceProvider.GetService<DatabaseContext>();
 
-    DummyMenuItems dummyData = new();
+    DummyMenu dummyData = new();
 
+    db.MenuCategories.AddRange(dummyData.MenuCategories);
     db.MenuItems.AddRange(dummyData.MenuItems);
+    db.MenuSubItems.AddRange(dummyData.MenuSubItems);
 
-    
     db.SaveChanges();
 }

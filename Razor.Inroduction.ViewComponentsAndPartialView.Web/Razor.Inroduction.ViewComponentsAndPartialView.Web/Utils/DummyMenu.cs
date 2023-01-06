@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
 
-namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
+namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils
 {
-    public class DummyMenuItems
+    public class DummyMenu
     {
+        public List<Menu> MenuCategories { get; set; }
         public List<MenuItem> MenuItems { get; set; }
+        public List<MenuSubItem> MenuSubItems { get; set; }
 
-        public DummyMenuItems()
+        public DummyMenu()
         {
+            MenuCategories = new();
             MenuItems = new();
+            MenuSubItems = new();
+
             SetMenuItems("Man");
             SetMenuItems("Woman");
             SetMenuItems("Child");
@@ -18,6 +24,8 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
 
         private void SetMenuItems(string type)
         {
+            Menu menuCategory = new() { Id = Guid.NewGuid(), Type = type };
+            MenuCategories.Add(menuCategory);
 
             for (int i = 1; i <= 10; i++)
             {
@@ -25,36 +33,24 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models
                 {
                     Id = Guid.NewGuid(),
                     Name = $"Category {i}",
-                    ParentId = Guid.Empty,
-                    Type = type
+                    MenuCategoryId = menuCategory.Id,
+
                 };
 
                 MenuItems.Add(parent);
 
                 for (int j = 1; j <= 3; j++)
                 {
-                    var child = new MenuItem
+                    var child = new MenuSubItem
                     {
                         Id = Guid.NewGuid(),
                         Name = $"Category {i}-{j}",
-                        ParentId = parent.Id,
-                        Type = type
+                        Href = $"Product/Category{i}-{j}.cshtml",
+                        MenuItemId = parent.Id
                     };
 
-                    MenuItems.Add(child);
+                    MenuSubItems.Add(child);
 
-                    for (int y = 1; y <= 2; y++)
-                    {
-                        var grandChild = new MenuItem
-                        {
-                            Id = Guid.NewGuid(),
-                            Name = $"Category {i}-{j}-{y}",
-                            ParentId = child.Id,
-                            Type = type
-                        };
-
-                        MenuItems.Add(grandChild);
-                    }
                 }
             }
         }

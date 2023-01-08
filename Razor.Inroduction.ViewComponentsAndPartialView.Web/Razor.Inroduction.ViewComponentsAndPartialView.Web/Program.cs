@@ -48,10 +48,12 @@ static void SetDummyData(WebApplication app)
 
     DummyMenu dummyMenus = new();
     DummyProduct dummyProducts = new();
+    DummyBaseColor dummyBaseColors = new();
 
     db.MenuCategories.AddRange(dummyMenus.MenuCategories);
     db.MenuItems.AddRange(dummyMenus.MenuItems);
     db.MenuSubItems.AddRange(dummyMenus.MenuSubItems);
     db.Products.AddRange(dummyProducts.Products);
+    db.BaseColors.AddRange(dummyBaseColors.BaseColors);
     db.SaveChanges();
 }

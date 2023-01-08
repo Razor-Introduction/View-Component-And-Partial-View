@@ -20,7 +20,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils
         {
             Random random = new();
 
-            for (int i = 1; i <= 4; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 Product product = new()
                 {

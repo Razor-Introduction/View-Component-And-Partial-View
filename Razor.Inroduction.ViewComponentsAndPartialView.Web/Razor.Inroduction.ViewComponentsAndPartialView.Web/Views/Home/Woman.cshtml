@@ -1,6 +1,7 @@
 ﻿@model List<Product>
 @{
     ViewData["Title"] = "Woman";
+    ViewData["Category"] = "Woman";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +11,7 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-3">
+            <div class="col-3 mb-3">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="@item.Image" alt="Card image cap">
                     <div class="card-body">

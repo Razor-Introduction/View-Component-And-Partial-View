@@ -15,17 +15,19 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.ViewComponents
         {
             _databaseContext = databaseContext;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string menuType, string color)
+        public async Task<IViewComponentResult> InvokeAsync(string menuType)
         {
             var menuModel = await _databaseContext.MenuCategories
                 .Include(mc => mc.MenuItems)
                 .ThenInclude(mi => mi.MenuSubItems)
                 .Where(x => x.Type == menuType).ToListAsync();
 
+            var color = await _databaseContext.BaseColors.Where(bc => bc.Category == menuType).ToListAsync();
+
             MenuViewModel menuViewModel = new()
             {
-                Color = color,
-                Menu = menuModel.First() ?? new Menu()
+                Menu = menuModel.First() ?? new Menu(),
+                Color =color.First() ?? new()   
             };
 
             return View(menuViewModel);

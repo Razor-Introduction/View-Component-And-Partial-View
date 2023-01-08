@@ -2,10 +2,9 @@
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
 {
-    public class MenuViewModel
+    public class PopularProductViewModel
     {
-        public Menu Menu { get; set; }
+        public List<Product>? Products { get; set; }
         public BaseColor? Color { get; set; }
-
     }
 }

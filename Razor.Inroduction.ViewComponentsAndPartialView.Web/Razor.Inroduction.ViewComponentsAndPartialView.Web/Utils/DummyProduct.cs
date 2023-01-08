@@ -28,7 +28,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils
                     Category = type,
                     Image = "/images/image.png",
                     Name = $"{type}-{i} Product",
-                    Price = random.Next(1000, 5000)
+                    Price = Math.Round(random.NextDouble() * (5000 - 1000) + 1000, 2)
                 };
 
                 Products.Add(product);

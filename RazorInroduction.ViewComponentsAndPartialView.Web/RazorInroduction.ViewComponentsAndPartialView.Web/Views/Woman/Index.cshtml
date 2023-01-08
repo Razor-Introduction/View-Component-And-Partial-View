@@ -1,0 +1,34 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Category"] = "Woman";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<vc:menu menu-type="Woman" color="bg-danger"></vc:menu>
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">
+                            <currency ref="tr">
+                                @item.Price
+                            </currency>
+                        </p>
+                        <a href="#" class="btn btn-danger">Detail</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row mt-5">
+        <vc:womans-day/>
+    </div>
+</div>
+

@@ -1,15 +1,16 @@
-﻿@model List<Product>
+﻿@using RazorInroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
+@model WomanCategoryViewModel
 @{
     ViewData["Title"] = "Index";
     ViewData["Category"] = "Woman";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<vc:menu menu-type="Woman"></vc:menu>
+<partial name="~/Views/Shared/Partials/_Menu.cshtml" model="Model.MenuViewModel" />
 
 <div class="container mt-5">
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Products)
         {
             <div class="col-3 mb-3">
                 <div class="card" style="width: 18rem;">
@@ -28,7 +29,10 @@
         }
     </div>
     <div class="row mt-5">
-        <vc:womans-day/>
+        <partial name="~/Views/Shared/Partials/Woman/_WomansDay.cshtml" model="Model.WomansDayViewModel" />
     </div>
 </div>
+
+<partial name="~/Views/Shared/Partials/_PopularProducts.cshtml" model="Model.PopularProductViewModel" />
+
 

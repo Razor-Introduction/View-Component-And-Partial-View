@@ -26,24 +26,6 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Man()
-        {
-            var model = await _databaseContext.Products.Where(p => p.Category == "Man").ToListAsync();
-            return View(model);
-        }
-
-        public async Task<IActionResult> Woman()
-        {
-            var model = await _databaseContext.Products.Where(p => p.Category == "Woman").ToListAsync();
-            return View(model);
-        }
-
-        public async Task<IActionResult> Child()
-        {
-            var model = await _databaseContext.Products.Where(p => p.Category == "Child").ToListAsync();
-            return View(model);
-        }
-
         public IActionResult Privacy()
         {
             return View();

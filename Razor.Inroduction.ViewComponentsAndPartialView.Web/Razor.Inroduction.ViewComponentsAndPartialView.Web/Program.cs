@@ -44,14 +44,14 @@ app.Run();
 static void SetDummyData(WebApplication app)
 {
     var scope = app.Services.CreateScope();
-   
     var db = scope.ServiceProvider.GetService<DatabaseContext>();
 
-    DummyMenu dummyData = new();
+    DummyMenu dummyMenus = new();
+    DummyProduct dummyProducts = new();
 
-    db.MenuCategories.AddRange(dummyData.MenuCategories);
-    db.MenuItems.AddRange(dummyData.MenuItems);
-    db.MenuSubItems.AddRange(dummyData.MenuSubItems);
-
+    db.MenuCategories.AddRange(dummyMenus.MenuCategories);
+    db.MenuItems.AddRange(dummyMenus.MenuItems);
+    db.MenuSubItems.AddRange(dummyMenus.MenuSubItems);
+    db.Products.AddRange(dummyProducts.Products);
     db.SaveChanges();
 }

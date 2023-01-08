@@ -6,6 +6,7 @@ using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.DatabaseContext;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.ViewModels;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
 {
@@ -22,24 +23,25 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Controllers
 
         public IActionResult Index()
         {
-
-
             return View();
         }
 
-        public IActionResult Man()
+        public async Task<IActionResult> Man()
         {
-            return View();
+            var model = await _databaseContext.Products.Where(p => p.Category == "Man").ToListAsync();
+            return View(model);
         }
 
-        public IActionResult Woman()
+        public async Task<IActionResult> Woman()
         {
-            return View();
+            var model = await _databaseContext.Products.Where(p => p.Category == "Woman").ToListAsync();
+            return View(model);
         }
 
-        public IActionResult Child()
+        public async Task<IActionResult> Child()
         {
-            return View();
+            var model = await _databaseContext.Products.Where(p => p.Category == "Child").ToListAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()

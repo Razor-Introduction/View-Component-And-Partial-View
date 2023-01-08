@@ -11,5 +11,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Models.DatabaseCont
         public DbSet<Menu> MenuCategories { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<MenuSubItem> MenuSubItems { get; set; }
+        public DbSet<Product> Products { get; set; }
+
     }
 }

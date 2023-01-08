@@ -1,7 +1,26 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Man";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <vc:menu menu-type="Man" color="bg-primary"></vc:menu>
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Price</p>
+                        <a href="#" class="btn btn-primary">Detail</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 

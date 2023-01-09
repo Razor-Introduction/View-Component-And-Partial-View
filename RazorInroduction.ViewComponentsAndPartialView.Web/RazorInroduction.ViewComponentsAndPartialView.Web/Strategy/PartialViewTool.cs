@@ -44,7 +44,7 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
         }
         public async Task<string> GetWomansDayContent(WomansDayModel womansDayModel)
         {
-            return await RenderToStringAsync("_WomansDay", womansDayModel.WomansDayViewModel);
+            return await RenderToStringAsync("Partials/Woman/_WomansDay", womansDayModel.WomansDayViewModel);
         }
         public async Task<string> RenderToStringAsync(string viewName, object model)
         {

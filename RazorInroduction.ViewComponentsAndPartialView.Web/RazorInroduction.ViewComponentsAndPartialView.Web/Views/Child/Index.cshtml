@@ -1,15 +1,20 @@
-﻿@model List<Product>
+﻿@using Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
+@using RazorInroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
+@model CategoryViewModel
 @{
     ViewData["Title"] = "Index";
     ViewData["Category"] = "Child";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@inject IComponentTool _componentTool
 
-<vc:menu menu-type="Child"></vc:menu>
+<html-raw>
+    @await _componentTool.GetMenu(Model.MenuModel)
+</html-raw>
 
 <div class="container mt-5">
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Products)
         {
             <div class="col-3 mb-3">
                 <div class="card" style="width: 18rem;">
@@ -28,5 +33,9 @@
         }
     </div>
 </div>
+
+<html-raw>
+    @await _componentTool.GetPopularProducts(Model.PopularProductModel)
+</html-raw>
 
 

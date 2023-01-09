@@ -55,13 +55,14 @@ namespace RazorInroduction.ViewComponentsAndPartialView.Web.Controllers
                 var menuViewModel = new MenuViewModel() { Menu = menuModel.First(), Color = color.First() };
 
                 var popularProductViewModel = new PopularProductViewModel() { Products = popularProducts, Color = color.First() };
+                var womanDaysProducts = await _databaseContext.Products.Where(p => p.Category == "Woman").Take(8).ToListAsync();
+                var womansDayViewModel = new WomansDayViewModel { Products = womanDaysProducts };
 
-                var womansDayViewModel = 
                 return new WomanCategoryViewModel()
                 {
                     MenuModel = new MenuModel() { menuViewModel = menuViewModel, Type = "Woman" },
-                    PopularProductModel = new PopularProductModel() { PopularProductViewModel = popularProductViewModel, Category = "Man", Count = 6 },
-                    WomansDayModel = new WomansDayModel() { WomansDayViewModel}
+                    PopularProductModel = new PopularProductModel() { PopularProductViewModel = popularProductViewModel, Category = "Woman", Count = 6 },
+                    WomansDayModel = new WomansDayModel() { WomansDayViewModel = womansDayViewModel }
                 };
             }
             else

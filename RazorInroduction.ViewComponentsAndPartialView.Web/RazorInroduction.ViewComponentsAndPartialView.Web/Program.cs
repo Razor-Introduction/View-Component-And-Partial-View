@@ -14,11 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseInMemoryDatabase("MenuItemsInMemoryDatabase");
 });
+
 builder.Services.AddScoped<IComponentTool>(sp =>
 {
     var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();

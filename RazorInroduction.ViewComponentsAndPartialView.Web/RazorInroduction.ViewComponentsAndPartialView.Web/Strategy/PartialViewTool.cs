@@ -36,15 +36,15 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
 
         public async Task<string> GetMenu(MenuModel menuModel)
         {
-            return await RenderToStringAsync("_Menu", menuModel.menuViewModel);
+            return await RenderToStringAsync("Partials/_Menu", menuModel.menuViewModel);
         }
         public async Task<string> GetPopularProducts(PopularProductModel popularProductModel)
         {
-            return await RenderToStringAsync("_PopularProducts", popularProductModel.PopularProductViewModel);
+            return await RenderToStringAsync("Partials/_PopularProducts", popularProductModel.PopularProductViewModel);
         }
         public async Task<string> GetWomansDayContent(WomansDayModel womansDayModel)
         {
-            return await RenderToStringAsync("_PopularProducts", womansDayModel.WomansDayViewModel);
+            return await RenderToStringAsync("_WomansDay", womansDayModel.WomansDayViewModel);
         }
         public async Task<string> RenderToStringAsync(string viewName, object model)
         {

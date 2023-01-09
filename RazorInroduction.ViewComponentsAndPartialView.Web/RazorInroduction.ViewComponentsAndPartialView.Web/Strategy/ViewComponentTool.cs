@@ -16,24 +16,35 @@ using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using RazorInroduction.ViewComponentsAndPartialView.Web.Utils;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Constant;
+using RazorInroduction.ViewComponentsAndPartialView.Web.Models.ViewModels;
+using Razor.Inroduction.ViewComponentsAndPartialView.Web.Utils;
+using System.Drawing.Drawing2D;
+using RazorInroduction.ViewComponentsAndPartialView.Web.Models.Strategy;
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
 {
-    public class MenuViewComponentTool : IMenuTool
+    public class ViewComponentTool : IComponentTool
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ITempDataProvider _tempDataProvider;
         public string ComponentType { get; private set; }
-        public MenuViewComponentTool(IServiceProvider serviceProvider, ITempDataProvider tempDataProvider)
+        public ViewComponentTool(IServiceProvider serviceProvider, ITempDataProvider tempDataProvider)
         {
             _serviceProvider = serviceProvider;
             _tempDataProvider = tempDataProvider;
             ComponentType = Constants.ComponentType.ViewComponent;
         }
-        public async Task<string> Get(MenuViewModel menuViewModel)
+        public async Task<string> GetMenu(MenuModel menuModel)
         {
-
-            return await RenderViewComponent("Menu", new { Color = menuViewModel.Color, Type = menuViewModel.Type });
+            return await RenderViewComponent("Menu", new { menuType = menuModel.Type });
+        }
+        public async Task<string> GetPopularProducts(PopularProductModel popularProductModel)
+        {
+            return await RenderViewComponent("PopularProducts", new { category = popularProductModel.Category, count = popularProductModel.Count });
+        }
+        public async Task<string> GetWomansDayContent(WomansDayModel womansDayModel)
+        {
+            return await RenderViewComponent("WomansDay", null);
         }
         public async Task<string> RenderViewComponent(string viewComponent, object args)
         {
@@ -47,9 +58,9 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
                 sp.GetRequiredService<IViewComponentSelector>(),
                 sp.GetRequiredService<IViewComponentInvokerFactory>(),
                 sp.GetRequiredService<IViewBufferScope>());
-            
+
             var actionContext = new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
-           
+
             var viewDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
             {
                 Model = args

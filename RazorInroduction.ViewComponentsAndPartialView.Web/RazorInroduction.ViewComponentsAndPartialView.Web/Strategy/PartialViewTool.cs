@@ -8,23 +8,25 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Razor.Inroduction.ViewComponentsAndPartialView.Web.Constant;
-using Razor.Inroduction.ViewComponentsAndPartialView.Web.Models;
+using RazorInroduction.ViewComponentsAndPartialView.Web.Models;
+using RazorInroduction.ViewComponentsAndPartialView.Web.Models.Strategy;
+using RazorInroduction.ViewComponentsAndPartialView.Web.Models.ViewModels;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using static Razor.Inroduction.ViewComponentsAndPartialView.Web.Constant.MenuConstants;
+using static Razor.Inroduction.ViewComponentsAndPartialView.Web.Constant.Constants;
 
 namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
 {
-    public class MenuPartialViewTool : IMenuTool
+    public class PartialViewTool : IComponentTool
     {
         private readonly IRazorViewEngine _razorViewEngine;
         private readonly ITempDataProvider _tempDataProvider;
         private readonly IServiceProvider _serviceProvider;
-        public string ComponentType { get; private set;}
+        public string ComponentType { get; private set; }
 
 
-        public MenuPartialViewTool(IRazorViewEngine razorViewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
+        public PartialViewTool(IRazorViewEngine razorViewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
         {
             _razorViewEngine = razorViewEngine;
             _tempDataProvider = tempDataProvider;
@@ -32,13 +34,18 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
             ComponentType = Constants.ComponentType.PartialView;
         }
 
-
-        public async Task<string> Get(MenuViewModel menuViewModel)
+        public async Task<string> GetMenu(MenuModel menuModel)
         {
-
-            return await RenderToStringAsync("_MenuPartialView", menuViewModel);
+            return await RenderToStringAsync("_Menu", menuModel.menuViewModel);
         }
-
+        public async Task<string> GetPopularProducts(PopularProductModel popularProductModel)
+        {
+            return await RenderToStringAsync("_PopularProducts", popularProductModel.PopularProductViewModel);
+        }
+        public async Task<string> GetWomansDayContent(WomansDayModel womansDayModel)
+        {
+            return await RenderToStringAsync("_PopularProducts", womansDayModel.WomansDayViewModel);
+        }
         public async Task<string> RenderToStringAsync(string viewName, object model)
         {
             var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };

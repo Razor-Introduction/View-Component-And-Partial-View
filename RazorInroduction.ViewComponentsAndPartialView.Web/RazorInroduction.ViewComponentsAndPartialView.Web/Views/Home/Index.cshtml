@@ -1,0 +1,18 @@
+﻿@using Razor.Inroduction.ViewComponentsAndPartialView.Web.Constant
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12  d-flex justify-content-center">
+            <a asp-controller="Home" asp-action="SetComponentType" asp-route-type="PartialView" style="margin-right:20px" class="btn btn-success">Use Partial View</a>
+            <a asp-controller="Home" asp-action="SetComponentType" asp-route-type="ViewComponent" class="btn btn-danger">Use View Component</a>
+        </div>
+        <div class="col-12  d-flex justify-content-center mt-3">
+            <b>Currently: </b>&nbsp; @Context.Request.Cookies[Constants.CookieName]
+        </div>
+    </div>
+
+</div>
+

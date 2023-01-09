@@ -1,0 +1,41 @@
+﻿@using Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
+@using RazorInroduction.ViewComponentsAndPartialView.Web.Models.ViewModels
+@model CategoryViewModel
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Category"] = "Child";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject IComponentTool _componentTool
+
+<html-raw>
+    @await _componentTool.GetMenu(Model.MenuModel)
+</html-raw>
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var item in Model.Products)
+        {
+            <div class="col-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">
+                            <currency ref="tr">
+                                @item.Price
+                            </currency>
+                        </p>
+                        <a href="#" class="btn btn-success">Detail</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<html-raw>
+    @await _componentTool.GetPopularProducts(Model.PopularProductModel)
+</html-raw>
+
+

@@ -72,7 +72,6 @@ namespace Razor.Inroduction.ViewComponentsAndPartialView.Web.Strategy
                 helper.Contextualize(context);
                 var result = await helper.InvokeAsync(viewComponent, args);
                 result.WriteTo(writer, HtmlEncoder.Default);
-                await writer.FlushAsync();
                 return writer.ToString();
             }
         }
